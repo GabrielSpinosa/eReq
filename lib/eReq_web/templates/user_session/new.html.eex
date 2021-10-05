@@ -1,0 +1,53 @@
+<br>
+<br>
+
+<section>
+  <div class="row">
+    <div class="col-sm">
+    </div>
+    <div class="col-sm" >
+      <div class="px-lg-5 pt-lg-4 pb-lg-3 p-4">
+          <img src="<%= Routes.static_path(@conn, "/images/ereq.png") %>" alt="Ereq Logo" class="img-fluid"/>
+      </div>
+      <div class="px-lg-5 py-lg-4 p-4">
+        <h1>Bienvenido</h1>
+        <%= form_for @conn, Routes.user_session_path(@conn, :create), [as: :user], fn f -> %>
+          <%= if @error_message do %>
+            <div class="alert alert-danger">
+            <p><%= @error_message %></p>
+            </div>
+          <% end %>
+          <div class="mb-3">
+            <%= label f, :email %>
+            <%= email_input f, :email, required: true %>
+            <div id="emailHelp" class="form-text">Ingresar su usuario de EON.</div>
+          </div>
+
+          <div class="mb-3">
+            <%= label f, :password %>
+            <%= password_input f, :password, required: true %>
+            <br>
+          </div>
+
+          <div class="mb-3">
+            <%= label f, :remember_me, "Keep me logged in for 60 days" %>
+            <%= checkbox f, :remember_me %>
+          </div>
+
+          <div>
+            <button type="submit" class="btn btn-danger">Ingresar</button>
+          </div>
+        <% end %>
+        <br>
+        <br>
+        <br>
+        <p>
+          <%= link "Register", to: Routes.user_registration_path(@conn, :new) %> |
+          <%= link "Forgot your password?", to: Routes.user_reset_password_path(@conn, :new) %>
+        </p>
+      </div>
+    </div>
+    <div class="col-sm" >
+    </div>
+  </div>
+</section>
